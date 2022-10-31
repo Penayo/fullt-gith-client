@@ -33,7 +33,7 @@ function App() {
           </div>
         </div>
         <div className="w-full h-full p-4 m-8 overflow-y-auto">
-          <div className="flex p-40 border-4 border-dotted">
+          <div className="w-full p-40 border-4 border-dotted">
             <main>
               <Routes>
                 <Route path="/" element={<Dashboard />} />

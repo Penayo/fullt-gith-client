@@ -2,6 +2,7 @@ import React from 'react' ;
 import { Sidebar } from 'flowbite-react' ;
 import { HiChartPie, HiShoppingBag, HiInbox } from 'react-icons/hi' ;
 import { useNavigate } from 'react-router-dom';
+import BranchesItems from './branches-items'
 
 export function AppSidebar () {
   const navigate = useNavigate()
@@ -24,17 +25,7 @@ export function AppSidebar () {
           >
             Dashboard
           </Sidebar.Item>
-          <Sidebar.Collapse
-            icon={HiShoppingBag}
-            label="Branches"
-          >
-            <Sidebar.Item href="#" onClick={() => goTo('commits/master')}>
-              master
-            </Sidebar.Item>
-            <Sidebar.Item href="#" onClick={() => goTo('commits/develop')}>
-              develop
-            </Sidebar.Item>
-          </Sidebar.Collapse>
+          <BranchesItems onClickItem={(path: string) => goTo(path)} />
           <Sidebar.Item
             href="#"
             icon={HiInbox}
