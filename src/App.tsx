@@ -6,7 +6,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import Dashboard from './pages/dashboard'
+import Welcome from './pages/welcome'
 import Commits from './pages/commits'
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
           <div className="w-full p-40 border-4 border-dotted">
             <main>
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<Welcome />} />
                 <Route path="/commits/:branchName" element={<Commits repository={repository} />} />
               </Routes>
             </main>

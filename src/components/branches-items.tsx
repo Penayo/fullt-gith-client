@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Sidebar, Spinner } from 'flowbite-react'
-import { HiShoppingBag } from 'react-icons/hi' ;
+import { Sidebar, Spinner, Alert } from 'flowbite-react'
+import { HiShoppingBag, HiInformationCircle } from 'react-icons/hi' ;
 import { BiGitBranch } from 'react-icons/bi';
 import { useGetBranch } from '../services/github-api'
 import { Branch } from '../models/Branch'
@@ -21,6 +21,19 @@ function BranchesItems ({ repository, onClickItem }:BranchesItemsProps ) {
         label="Branches"
         collapsed
       >
+      {
+        error &&
+        <Sidebar.Item href="#" className="text-center">
+          <Alert color="failure" icon={HiInformationCircle}>
+            <span>
+              <span className="font-medium">
+                Error!
+              </span>
+              {' '}The server is probably down!.
+            </span>
+          </Alert>
+        </Sidebar.Item>
+      }
       {
         loading &&
         <Sidebar.Item href="#" className="text-center">
