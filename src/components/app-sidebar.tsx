@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react' ;
 import { Sidebar } from 'flowbite-react' ;
 import { HiChartPie, HiShoppingBag, HiInbox } from 'react-icons/hi' ;
+import { SiSwagger } from 'react-icons/si'
 import { useNavigate } from 'react-router-dom';
 import BranchesItems from './branches-items'
 
@@ -27,22 +28,10 @@ export function AppSidebar ({ repository }:AppSidebarProps) {
     <Sidebar aria-label="Sidebar with multi-level dropdown">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item
-            href="#"
-            icon={HiChartPie}
-          >
-            Dashboard
-          </Sidebar.Item>
           <BranchesItems repository={repository} onClickItem={(path: string) => goTo(path)} />
           <Sidebar.Item
             href="#"
-            icon={HiInbox}
-          >
-            Issues
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={HiInbox}
+            icon={SiSwagger}
             onClick={() => openUrl('http://localhost:8000/swagger')}
           >
             Swagger API Doc

@@ -4,6 +4,7 @@ import { HiInformationCircle, HiRefresh } from 'react-icons/hi'
 import { useParams } from "react-router-dom";
 import { useGetCommits } from '../services/github-api';
 import { Commit } from '../models/Commit' ;
+import dayjs from 'dayjs';
 
 interface CommitProps {
   repository: string
@@ -37,7 +38,7 @@ function Commits ({ repository }:CommitProps) {
                 { commit.message }
               </Table.Cell>
               <Table.Cell>
-                { commit.date }
+                { dayjs(commit.date).format('YYYY-MM-DD HH:mm') }
               </Table.Cell>
             </Table.Row>
           ))
@@ -61,7 +62,7 @@ function Commits ({ repository }:CommitProps) {
           <div className="grow w-full h-14 ...">
             <h5 className="mb-4 text-2xl font-bold">Branch {branchName}'s Commit List</h5>
           </div>
-          <div className="flex w-4 h-40">
+          <div className="flex-none w-18 h-40">
             <Button size="sm" onClick={() => setKey(key + 1)}>
               <HiRefresh className="mr-2 h-5 w-5" />
               Refresh
@@ -76,7 +77,7 @@ function Commits ({ repository }:CommitProps) {
               <span className="font-medium">
                 Info!
               </span>
-              There is no more data to show.
+              {' '}There is no more data to show.
             </span>
           </Alert>
         }

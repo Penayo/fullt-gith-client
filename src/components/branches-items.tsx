@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Sidebar, Spinner } from 'flowbite-react'
 import { HiShoppingBag } from 'react-icons/hi' ;
+import { BiGitBranch } from 'react-icons/bi';
 import { useGetBranch } from '../services/github-api'
 import { Branch } from '../models/Branch'
 
@@ -13,19 +14,12 @@ function BranchesItems ({ repository, onClickItem }:BranchesItemsProps ) {
   const [key, setKey] = useState(0)
   const [loading, data, error] = useGetBranch(key, repository) ;
 
-  useEffect(() => {
-    console.log('Branches error', error)
-  }, [error])
-
-  useEffect(() => {
-    console.log('Cambio de repo', repository)
-  }, [repository])
-
   return (
     <>
       <Sidebar.Collapse
-        icon={HiShoppingBag}
+        icon={BiGitBranch}
         label="Branches"
+        collapsed
       >
       {
         loading &&
