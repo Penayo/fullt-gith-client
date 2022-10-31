@@ -30,7 +30,7 @@ function useGetBranch (key: number) {
   return [loading, branches, error]
 }
 
-function useGetCommits (key: number, branchName: string | undefined) {
+function useGetCommits (key: number, branchName: string | undefined, page: number, perPage: number) {
   const [data, setData] = useState<Commit[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<AxiosError>()
@@ -39,7 +39,8 @@ function useGetCommits (key: number, branchName: string | undefined) {
     async function fetchData () {
       setLoading(true)
       try {
-        const result = await axios.get<Commit[]>(`github/branches/${branchName}?repository=fullt-repo-admin`)
+        const query = `repository=fullt-repo-admin&page=${page}&per_page=${perPage}`
+        const result = await axios.get<Commit[]>(`github/branches/${branchName}?${query}`)
         setData(result.data)
       } catch (error: any) {
         setError(error)
@@ -52,7 +53,7 @@ function useGetCommits (key: number, branchName: string | undefined) {
       fetchData()
     }
 
-  }, [key, branchName])
+  }, [key, branchName, page])
 
   return [loading, data, error]
 }
