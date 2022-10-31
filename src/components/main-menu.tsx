@@ -1,43 +1,42 @@
 import React from 'react';
-import { Navbar } from 'flowbite-react';
+import { Navbar, Dropdown, Avatar } from 'flowbite-react';
 
-export function MainMenu () {
+interface MainMenuProps {
+  repository: string,
+  onSelectRepo: any
+}
+
+export function MainMenu ({ repository, onSelectRepo }:MainMenuProps) {
   return (
     <Navbar
       fluid={true}
       rounded={true}
     >
-      <Navbar.Brand href="https://flowbite.com/">
+      <Navbar.Brand href="#">
         <img
           src="https://flowbite.com/docs/images/logo.svg"
           className="mr-3 h-6 sm:h-9"
           alt="Flowbite Logo"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite
+          { repository.toUpperCase() }
         </span>
       </Navbar.Brand>
       <Navbar.Toggle />
-      <Navbar.Collapse>
-        <Navbar.Link
-          href="/navbars"
-          active={true}
+      <div className="flex md:order-2">
+        <Dropdown
+          inline={true}
+          label="Select Repository"
         >
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">
-          About
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">
-          Services
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">
-          Pricing
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">
-          Contact
-        </Navbar.Link>
-      </Navbar.Collapse>
+          <Dropdown.Item onClick={() => onSelectRepo('fullt-gith-client')}>
+            fullt-gith-client
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => onSelectRepo('fullt-repo-admin')}>
+            fullt-repo-admin
+          </Dropdown.Item>
+        </Dropdown>
+        <Navbar.Toggle />
+      </div>
     </Navbar>
   )
 }

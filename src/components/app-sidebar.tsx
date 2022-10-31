@@ -1,10 +1,20 @@
-import React from 'react' ;
+import React, { useEffect } from 'react' ;
 import { Sidebar } from 'flowbite-react' ;
 import { HiChartPie, HiShoppingBag, HiInbox } from 'react-icons/hi' ;
+import { SiSwagger } from 'react-icons/si'
 import { useNavigate } from 'react-router-dom';
+import BranchesItems from './branches-items'
 
-export function AppSidebar () {
+interface AppSidebarProps {
+  repository: string
+}
+
+export function AppSidebar ({ repository }:AppSidebarProps) {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log('EL REPO', repository)
+  }, [repository])
 
   function openUrl (url: string) {
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -18,32 +28,10 @@ export function AppSidebar () {
     <Sidebar aria-label="Sidebar with multi-level dropdown">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
+          <BranchesItems repository={repository} onClickItem={(path: string) => goTo(path)} />
           <Sidebar.Item
             href="#"
-            icon={HiChartPie}
-          >
-            Dashboard
-          </Sidebar.Item>
-          <Sidebar.Collapse
-            icon={HiShoppingBag}
-            label="Branches"
-          >
-            <Sidebar.Item href="#" onClick={() => goTo('commits/master')}>
-              master
-            </Sidebar.Item>
-            <Sidebar.Item href="#" onClick={() => goTo('commits/develop')}>
-              develop
-            </Sidebar.Item>
-          </Sidebar.Collapse>
-          <Sidebar.Item
-            href="#"
-            icon={HiInbox}
-          >
-            Issues
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-            icon={HiInbox}
+            icon={SiSwagger}
             onClick={() => openUrl('http://localhost:8000/swagger')}
           >
             Swagger API Doc
