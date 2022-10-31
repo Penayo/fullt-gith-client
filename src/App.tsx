@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { AppSidebar } from './components/app-sidebar';
-// import { MainMenu } from './components/main-menu';
+import { MainMenu } from './components/main-menu';
 import {
   Routes,
   Route
@@ -10,26 +10,15 @@ import Dashboard from './pages/dashboard'
 import Commits from './pages/commits'
 
 function App() {
+  const [repository, setRepository] = useState('fullt-repo-admin')
+
   return (
     <div className="container">
+      <MainMenu repository={repository} onSelectRepo={(repositoryName: string) => setRepository(repositoryName)}/>
       <div className="flex">
         <div className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-none border-r">
           <div className="flex flex-col mt-6">
-            <div className="flex">
-              <div className="flex flex-col mt-6">
-                <img
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  className="ml-5 h-6 sm:h-9"
-                  alt="Flowbite Logo"
-                />
-              </div>
-              <div className="w-full h-full p-4 m-8">
-                <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                  Flowbite
-                </span>
-              </div>
-            </div>
-            <AppSidebar />
+            <AppSidebar repository={repository} />
           </div>
         </div>
         <div className="w-full h-full p-4 m-8 overflow-y-auto">
@@ -37,7 +26,7 @@ function App() {
             <main>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/commits/:branchName" element={<Commits />} />
+                <Route path="/commits/:branchName" element={<Commits repository={repository} />} />
               </Routes>
             </main>
           </div>

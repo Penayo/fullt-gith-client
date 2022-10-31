@@ -1,11 +1,19 @@
-import React from 'react' ;
+import React, { useEffect } from 'react' ;
 import { Sidebar } from 'flowbite-react' ;
 import { HiChartPie, HiShoppingBag, HiInbox } from 'react-icons/hi' ;
 import { useNavigate } from 'react-router-dom';
 import BranchesItems from './branches-items'
 
-export function AppSidebar () {
+interface AppSidebarProps {
+  repository: string
+}
+
+export function AppSidebar ({ repository }:AppSidebarProps) {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log('EL REPO', repository)
+  }, [repository])
 
   function openUrl (url: string) {
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -25,7 +33,7 @@ export function AppSidebar () {
           >
             Dashboard
           </Sidebar.Item>
-          <BranchesItems onClickItem={(path: string) => goTo(path)} />
+          <BranchesItems repository={repository} onClickItem={(path: string) => goTo(path)} />
           <Sidebar.Item
             href="#"
             icon={HiInbox}

@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Table, Spinner, Card, Pagination } from 'flowbite-react';
-import { HiInformationCircle } from 'react-icons/hi'
+import { Alert, Table, Spinner, Card, Pagination, Button } from 'flowbite-react';
+import { HiInformationCircle, HiRefresh } from 'react-icons/hi'
 import { useParams } from "react-router-dom";
 import { useGetCommits } from '../services/github-api';
 import { Commit } from '../models/Commit' ;
 
-function Commits () {
+interface CommitProps {
+  repository: string
+}
+
+function Commits ({ repository }:CommitProps) {
   const { branchName } = useParams<{ branchName: string}>() ;
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
   const [key, setKey] = useState(0);
-  const [loading, data, error] = useGetCommits(key, branchName, page, perPage);
+  const [loading, data, error] = useGetCommits(key, repository, branchName, page, perPage);
 
   useEffect(() => {
     setPage(1)
@@ -52,8 +56,19 @@ function Commits () {
 
   return (
     <>
-      <div className="w-full  tracking-tight text-gray-900 dark:text-white">
-        <h5 className="mb-4 text-2xl font-bold">Branch {branchName}'s Commit List</h5>
+      <div className="w-full dark:text-white">
+        <div className="flex">
+          <div className="grow w-full h-14 ...">
+            <h5 className="mb-4 text-2xl font-bold">Branch {branchName}'s Commit List</h5>
+          </div>
+          <div className="flex w-4 h-40">
+            <Button size="sm" onClick={() => setKey(key + 1)}>
+              <HiRefresh className="mr-2 h-5 w-5" />
+              Refresh
+            </Button>
+          </div>
+        </div>
+
         { loading && <LoadingItem /> }
         { page > 1 && (data as Commit[]).length === 0 &&
           <Alert color="failure" icon={HiInformationCircle}>

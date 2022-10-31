@@ -1,7 +1,12 @@
 import React from 'react';
-import { Navbar } from 'flowbite-react';
+import { Navbar, Dropdown, Avatar } from 'flowbite-react';
 
-export function MainMenu () {
+interface MainMenuProps {
+  repository: string,
+  onSelectRepo: any
+}
+
+export function MainMenu ({ repository, onSelectRepo }:MainMenuProps) {
   return (
     <Navbar
       fluid={true}
@@ -14,30 +19,25 @@ export function MainMenu () {
           alt="Flowbite Logo"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite
+          { repository }
         </span>
       </Navbar.Brand>
       <Navbar.Toggle />
-      <Navbar.Collapse>
-        <Navbar.Link
-          href="/navbars"
-          active={true}
+      <div className="flex md:order-2">
+        <Dropdown
+          arrowIcon={false}
+          inline={true}
+          label="Repository"
         >
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">
-          About
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">
-          Services
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">
-          Pricing
-        </Navbar.Link>
-        <Navbar.Link href="/navbars">
-          Contact
-        </Navbar.Link>
-      </Navbar.Collapse>
+          <Dropdown.Item onClick={() => onSelectRepo('fullt-gith-client')}>
+            Gith-API-client
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => onSelectRepo('fullt-repo-admin')}>
+            Gith-API-backend
+          </Dropdown.Item>
+        </Dropdown>
+        <Navbar.Toggle />
+      </div>
     </Navbar>
   )
 }

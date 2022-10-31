@@ -5,16 +5,21 @@ import { useGetBranch } from '../services/github-api'
 import { Branch } from '../models/Branch'
 
 interface BranchesItemsProps {
+  repository: string,
   onClickItem: any
 }
 
-function BranchesItems ({ onClickItem }:BranchesItemsProps ) {
+function BranchesItems ({ repository, onClickItem }:BranchesItemsProps ) {
   const [key, setKey] = useState(0)
-  const [loading, data, error] = useGetBranch(key) ;
+  const [loading, data, error] = useGetBranch(key, repository) ;
 
   useEffect(() => {
     console.log('Branches error', error)
   }, [error])
+
+  useEffect(() => {
+    console.log('Cambio de repo', repository)
+  }, [repository])
 
   return (
     <>
@@ -24,12 +29,12 @@ function BranchesItems ({ onClickItem }:BranchesItemsProps ) {
       >
       {
         loading &&
-        <Sidebar.Item href="#">
+        <Sidebar.Item href="#" className="text-center">
           <Spinner aria-label="Default status" />
         </Sidebar.Item>
       }
       {
-        (data as Branch[]).map((branch: any) => (
+        !loading && (data as Branch[]).map((branch: any) => (
           <Sidebar.Item key={branch.name} href="#" onClick={() => onClickItem(`commits/${branch.name}`)}>
             { branch.name }
           </Sidebar.Item>
