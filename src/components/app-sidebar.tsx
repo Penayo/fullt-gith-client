@@ -12,10 +12,6 @@ interface AppSidebarProps {
 export function AppSidebar ({ repository }:AppSidebarProps) {
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log('EL REPO', repository)
-  }, [repository])
-
   function openUrl (url: string) {
     window.open(url, '_blank', 'noopener,noreferrer');
   }
@@ -34,13 +30,14 @@ export function AppSidebar ({ repository }:AppSidebarProps) {
             icon={SiSwagger}
             onClick={() => openUrl('http://localhost:8000/swagger')}
           >
-            Swagger API Doc
+            Swagger API Doc.
           </Sidebar.Item>
           <Sidebar.Item
             href="#"
             icon={HiInbox}
+            onClick={() => openUrl('http://localhost:8000/documentation')}
           >
-            Development Doc.
+            API Project Doc.
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
