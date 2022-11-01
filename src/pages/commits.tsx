@@ -60,7 +60,7 @@ function Commits ({ repository }:CommitProps) {
       <div className="w-full dark:text-white">
         <div className="flex">
           <div className="grow w-full h-14 ...">
-            <h5 className="mb-4 text-2xl font-bold">Branch {branchName}'s Commit List</h5>
+            <h5 className="mb-4 text-2xl font-bold">Branch {branchName} Commit List</h5>
           </div>
           <div className="flex-none w-18 h-40">
             <Button size="sm" onClick={() => setKey(key + 1)}>
