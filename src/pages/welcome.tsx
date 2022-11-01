@@ -15,7 +15,7 @@ function Welcome () {
       <p>Is a <a href="https://nestjs.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600">Nest.js Framework</a></p>
       <p>To make posible the test requirement, I implemented <a href="https://github.com/octokit/octokit.js" target="_blank" rel="noopener noreferrer" className="text-blue-600">Octokit.js</a></p>
       <p>The project implement a <a target="_blank" rel="noopener noreferrer" className="text-blue-600" href="https://swagger.io/">Swagger OpenAPI</a> documentation to make front-ent developers life easiest. This openapidoc is fully funtional, so you can test
-      the responses of the API quickly a easily. Enjoy this part.</p>
+      the responses of the API quickly an easily. Enjoy this part.</p>
       <p>The project also implements an automatic documentation for development using compodoc that is an amazing technology, then you can see the whole project without cloning the repository and, if you
       want to extend the project you have a great guide.</p>
 
@@ -25,7 +25,7 @@ function Welcome () {
       <p>This project connect with backend making ajax request using <a href="https://axios-http.com/docs/intro" target="_blank" rel="noopener noreferrer" className="text-blue-600">axios.js</a></p>
 
       <br />
-      <p>To see the requirement functionality, check branckes item at left, and try change the repository with the top dropdown botton.</p>
+      <p>To see the requirement functionality, check branches item at left menu, and try change the repository with the top dropdown botton.</p>
     </div>
   )
 }
