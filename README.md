@@ -1,7 +1,10 @@
-# Getting Started with Create React App
+# Client project for technical test.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+If you want to see this project in action, please read the [backend server project](https://github.com/Penayo/fullt-repo-admin) guide.
+
+Otherwise.
 ## Available Scripts
 
 In the project directory, you have to run:
